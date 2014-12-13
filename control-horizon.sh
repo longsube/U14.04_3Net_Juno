@@ -8,7 +8,7 @@ echo "########## CAI DAT DASHBOARD ##########"
 sleep 5
 
 echo "########## Cài đặt Dashboard ##########"
-apt-get install openstack-dashboard apache2 libapache2-mod-wsgi memcached python-memcache -y
+apt-get install openstack-dashboard apache2 libapache2-mod-wsgi memcached python-memcache -y && dpkg --purge openstack-dashboard-ubuntu-theme
 
 echo "########## Cau hinh fix loi cho apache2 ##########"
 sleep 5
