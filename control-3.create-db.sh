@@ -25,7 +25,7 @@ service mysql restart
 echo "##### Tao DATABASE #####"
 sleep 3
 
-cat << EOF | mysql -u root -p $MYSQL_PASS
+cat << EOF | mysql -uroot -p$MYSQL_PASS
 DROP DATABASE IF EXISTS keystone;
 DROP DATABASE IF EXISTS glance;
 DROP DATABASE IF EXISTS nova;
