@@ -105,10 +105,7 @@ enable_ipset = True
 firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
 EOF
 
-su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.
-conf \
---config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade juno"
-neutron
+su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade juno" neutron
 
 echo "########## KHOI DONG LAI NOVA ##########"
 sleep 7 
