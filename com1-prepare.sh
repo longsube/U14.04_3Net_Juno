@@ -92,6 +92,11 @@ test -f $filenova.orig || cp $filenova $filenova.orig
 #Chen noi dung file /etc/nova/nova.conf vao 
 cat << EOF > $filenova
 [DEFAULT]
+instance_usage_audit = True
+instance_usage_audit_period = hour
+notify_on_state_change = vm_and_task_state
+notification_driver = nova.openstack.common.notifier.rpc_notifier
+notification_driver = ceilometer.compute.nova_notifier
 verbose = True
 network_api_class = nova.network.neutronv2.api.API
 security_group_api = neutron
@@ -321,3 +326,37 @@ sleep 5
 source admin-openrc.sh
 nova-manage service list
 neutron agent-list
+
+########
+echo "############ CAI DAT CEILOMETER-AGENT ############"
+sleep 5
+########
+apt-get install ceilometer-agent-compute -y
+
+ceil=/etc/ceilometer/ceilometer.conf
+test -f $ceil.orig || cp $ceil $ceil.orig
+rm $ceil
+touch $ceil
+cat << EOF >> $ceil
+[DEFAULT]
+rabbit_host = controller
+rabbit_password = $RABBIT_PASS
+log_dir = /var/log/ceilometer
+[publisher]
+# Secret value for signing metering messages (string value)
+metering_secret = $TOKEN
+[keystone_authtoken]
+auth_uri = http://controller:5000/v2.0
+identity_uri = http://controller:35357
+admin_tenant_name = service
+admin_user = ceilometer
+admin_password = $ADMIN_PASS
+[service_credentials]
+os_auth_url = http://controller:5000/v2.0
+os_username = ceilometer
+os_tenant_name = service
+os_password = $ADMIN_PASS
+os_endpoint_type = internalURL
+EOF
+
+service ceilometer-agent-compute restart

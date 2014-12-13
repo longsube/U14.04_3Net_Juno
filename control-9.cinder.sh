@@ -21,6 +21,8 @@ test -f $filecinder.orig || cp $filecinder $filecinder.orig
 rm $filecinder
 cat << EOF > $filecinder
 [DEFAULT]
+control_exchange = cinder
+notification_driver = cinder.openstack.common.notifier.rpc_notifier
 my_ip = $CON_MGNT_IP
 rootwrap_config = /etc/cinder/rootwrap.conf
 api_paste_confg = /etc/cinder/api-paste.ini

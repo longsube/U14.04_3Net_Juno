@@ -17,6 +17,7 @@ touch $fileglanceapicontrol
 
 cat << EOF > $fileglanceapicontrol
 [DEFAULT]
+notification_driver = messaging
 verbose = True
 rpc_backend = rabbit
 rabbit_host = controller

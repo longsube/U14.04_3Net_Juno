@@ -55,6 +55,9 @@ keystone user-role-add --tenant-id $SERVICE_TENANT --user-id $NEUTRON_USER --rol
 CINDER_USER=$(get_id keystone user-create --name=cinder --pass="$SERVICE_PASSWORD" --tenant-id $SERVICE_TENANT --email=cinder@teststack.com)
 keystone user-role-add --tenant-id $SERVICE_TENANT --user-id $CINDER_USER --role-id $ADMIN_ROLE
 
+CEILOMETER_USER=$(get_id keystone user-create --name=ceilometer --pass="$SERVICE_PASSWORD" --tenant-id $SERVICE_TENANT --email=cinder@teststack.com)
+keystone user-role-add --tenant-id $SERVICE_TENANT --user-id $CEILOMETER_USER --role-id $ADMIN_ROLE
+
 echo "########## Bat dau tao ENDPOINT cho cac dich vu ########## "
 sleep 5 
 
@@ -99,6 +102,14 @@ keystone endpoint-create \
 --publicurl=http://controller:8776/v2/%\(tenant_id\)s \
 --internalurl=http://controller:8776/v2/%\(tenant_id\)s \
 --adminurl=http://controller:8776/v2/%\(tenant_id\)s
+
+keystone service-create --name=ceilometer --type=metering --description="Telemetry"
+keystone endpoint-create \
+--service-id=$(keystone service-list | awk '/ metering / {print $2}') \
+--publicurl=http://controller:8777 \
+--internalurl=http://controller:8777 \
+--adminurl=http://controller:8777 \
+--region regionOne
 
 echo "########## TAO FILE CHO BIEN MOI TRUONG ##########"
 sleep 5
