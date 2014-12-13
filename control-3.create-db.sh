@@ -6,8 +6,8 @@ source config.cfg
 echo "##### Cai dat MYSQL #####"
 sleep 3
 
-echo mysql-server mysql-server/root_password password $MYSQL_ADMIN_PASS | debconf-set-selections
-echo mysql-server mysql-server/root_password_again password $MYSQL_ADMIN_PASS | debconf-set-selections
+echo mariadb-server mysql-server/root_password password $MYSQL_ADMIN_PASS | debconf-set-selections
+echo mariadb-server mysql-server/root_password_again password $MYSQL_ADMIN_PASS | debconf-set-selections
 apt-get update
 apt-get install mariadb-server python-mysqldb -y
 
@@ -25,7 +25,7 @@ service mysql restart
 echo "##### Tao DATABASE #####"
 sleep 3
 
-cat << EOF | mysql -uroot -p $MYSQL_PASS
+cat << EOF | mysql -u root -p $MYSQL_PASS
 DROP DATABASE IF EXISTS keystone;
 DROP DATABASE IF EXISTS glance;
 DROP DATABASE IF EXISTS nova;
