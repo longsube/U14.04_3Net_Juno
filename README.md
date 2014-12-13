@@ -14,11 +14,9 @@ apt-get update
 
 apt-get install git -y
 	
-git clone https://github.com/longsube/U14.04_4-Net
+git clone https://github.com/longsube/U14.04_3Net_Juno
 	
-mv /root/U14.04_4-Net/script-U1404-4net script-U1404-4net
-
-cd script-U1404-4net
+cd U14.04_3Net_Juno
 	
 chmod +x *.sh
 ```
@@ -67,7 +65,7 @@ Sau khi thực hiện script trên, máy Controller sẽ khởi động lại v�
 Đăng nhập vào Controller bằng địa chỉ <b>CON_EXT_IP</b> khai báo trong file <b><i>config.cfg</i></b> là 192.168.1.71 bằng tài khoản root.
 Sau đó di chuyển vào thư mục script-ubuntu1204 bằng lệnh cd và thực thi bằng lệnh bash
 
-    cd script-U1404-4net
+    cd U14.04_3Net_Juno
     bash control-2.prepare.sh
     
 #### C.3. Tạo Database cho các thành phần 
@@ -136,11 +134,11 @@ apt-get update
 
 apt-get install git -y
 
-git clone https://github.com/longsube/U14.04_4-Net
+git clone https://github.com/longsube/U14.04_3Net_Juno
 
-mv /root/U14.04_4-Net/script-U1404-4net script-U1404-4net
+mv /root/U14.04_4-Net/U14.04_3Net_Juno U14.04_3Net_Juno
 
-cd script-U1404-4net
+cd U14.04_3Net_Juno
 
 chmod +x *.sh
 ```
@@ -198,7 +196,7 @@ Chú ý: Shell sẽ chuyển eth1 sang chế độ promisc và đặt IP cho br-
 - Dùng putty ssh vào NETWORK NODE bằng IP 192.168.1.172 với tài khoản root
 - Di chuyển vào thư mục script-ubuntu1204 và thực thi shell dưới
 ```sh
-cd script-U1404-4net
+cd U14.04_3Net_Juno
 bash net-prepare.sh
 ```
 Kết thúc cài đặt trên NETWORK NODE và chuyển sang cài đặt COMPUTE NODE
@@ -212,11 +210,11 @@ apt-get update
 
 apt-get install git -y
 
-git clone https://github.com/longsube/U14.04_4-Net
+git clone https://github.com/longsube/U14.04_3Net_Juno
 
-mv /root/U14.04_4-Net/script-U1404-4net script-U1404-4net
+mv /root/U14.04_4-Net/U14.04_3Net_Juno U14.04_3Net_Juno
 
-cd script-U1404-4net
+cd U14.04_3Net_Juno
 
 chmod +x *.sh
 ```
@@ -275,7 +273,7 @@ COMPUTE node sẽ khởi động lại, cần phải đăng nhập bằng tải 
 
 Đăng nhập bằng tài khoản root và thực thi các lệnh dưới để tiến hành cài đặt nova
 
-    cd script-U1404-4net
+    cd U14.04_3Net_Juno
 	
     bash com1-prepare.sh
 
@@ -292,7 +290,7 @@ Kết thúc bước cài đặt trên COMPUTE NODE, chuyển về CONTROLLER NOD
 #### F.1. Cài đặt Horizon
 Đăng nhập bằng tài khoản root và đứng tại thư mục /root/script-ubuntu1204
 
-    cd /root/script-U1404-4net
+    cd /root/U14.04_3Net_Juno
 	
     bash control-horizon.sh
 
